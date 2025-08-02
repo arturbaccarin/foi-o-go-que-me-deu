@@ -2,7 +2,7 @@ package product
 
 type Manager interface {
 	Add(product Product)
-	Get(id int) (Product, bool)
+	Get(id int) Product
 	Remove(id int)
 	Update(product Product)
 }
@@ -22,9 +22,9 @@ func (db DB) Add(product Product) {
 	db[product.ID] = product
 }
 
-func (db DB) Get(id int) (Product, bool) {
-	product, exists := db[id]
-	return product, exists
+func (db DB) Get(id int) Product {
+	product := db[id]
+	return product
 }
 
 func (db DB) Remove(id int) {

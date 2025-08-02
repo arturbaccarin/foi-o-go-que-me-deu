@@ -2,7 +2,7 @@ package client
 
 type Manager interface {
 	Add(client Client)
-	Get(id int) (Client, bool)
+	Get(id int) Client
 	Remove(id int)
 	Update(client Client)
 }
@@ -22,9 +22,9 @@ func (db DB) Add(client Client) {
 	db[client.ID] = client
 }
 
-func (db DB) Get(id int) (Client, bool) {
-	client, exists := db[id]
-	return client, exists
+func (db DB) Get(id int) Client {
+	client := db[id]
+	return client
 }
 
 func (db DB) Remove(id int) {
